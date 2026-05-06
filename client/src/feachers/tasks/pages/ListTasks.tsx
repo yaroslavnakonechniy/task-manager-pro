@@ -15,7 +15,7 @@ export const ListTasks = () => {
     }, []);
 
     useEffect(() => {
-        if (error) {
+        if (!isLoading && data?.length === 0) {
             const timer = setTimeout(() => {
                 navigate(`/boards/${boardId}/tasks/create`); 
             }, 2000);
