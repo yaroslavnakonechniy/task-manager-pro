@@ -10,15 +10,11 @@ export const ListTasks = () => {
 
     const { data = [], isLoading, error } = useGetTasksBoardByIdQuery(boardId!);
 
-    useEffect(() => {
-        console.log("📦 [LIST TASKS] data:", data);
-    }, [data]);
-    // scroll top only once
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
-    // redirect only if loaded and truly empty
     useEffect(() => {
         if (!isLoading && data.length === 0) {
             const timer = setTimeout(() => {
@@ -32,10 +28,6 @@ export const ListTasks = () => {
     const todo = data.filter(t => t.workflow === "todo");
     const progress = data.filter(t => t.workflow === "progress");
     const done = data.filter(t => t.workflow === "done");
-
-    console.log('todo', todo);
-    console.log('progress', progress);
-    console.log('done', done);
 
     if (isLoading) {
         return <Spin size="large" style={{ marginTop: 100 }} />;

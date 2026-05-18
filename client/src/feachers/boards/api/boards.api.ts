@@ -18,16 +18,17 @@ export const boardsApi = baseApi.injectEndpoints({
             }),
             
             transformResponse: (response: any) => {
-            // не обнуляємо, просто повертаємо пустий масив якщо немає стріму
+
             return response?.data ?? [];
             },
             
             async onCacheEntryAdded(boardId, { updateCachedData, cacheDataLoaded, cacheEntryRemoved }) {
                 try {
                     await cacheDataLoaded;
-                    console.log(`🚀 [STREAM TASKS] Початок завантаження тасок для борди: ${boardId}`);
 
-                    const response = await fetch(`http://localhost:3000/api/v1/boards/${boardId}/tasks`, {
+                    const BASE_URL = import.meta.env.VITE_API_URL;
+
+                    const response = await fetch(`${BASE_URL}/api/v1/boards/${boardId}/tasks`, {
                         method: 'GET',
                         credentials: 'include', 
                     });

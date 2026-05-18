@@ -6,9 +6,7 @@ import App from './App.tsx'
 import "antd/dist/reset.css";
 
 createRoot(document.getElementById('root')!).render(
-
     <Provider store={store} >
       <App />
     </Provider>
-
 )

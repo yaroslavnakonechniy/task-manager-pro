@@ -1,40 +1,22 @@
 import { Outlet } from "react-router-dom"
 import { Layout } from 'antd';
 import { AppHeader } from "../header/AppHeader";
+import { FooterPage } from "../footer/Footer";
+import styles from "./styles.module.scss";
 
 const { Footer, Content } = Layout;
-
-const contentStyle: React.CSSProperties = {
-    textAlign: 'center',
-    minHeight: 120,
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#bfbfbf',
-};
-const layoutStyle = {
-    borderRadius: 8,
-    overflow: 'hidden',
-    width: '100%',
-    maxWidth: 1400,
-    margin: '0 auto',
-  
-};
-
-const footerStyle: React.CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#4096ff',
-};
  
 export const LayoutPage = () => {
     return(
         <>
-            <Layout style={layoutStyle}>
+            <Layout className={styles.layout}>
                 <AppHeader />
-                <Content style={contentStyle}>
+                <Content className={styles.content}>
                     <Outlet/>
                 </Content>
-                <Footer style={footerStyle}>Footer</Footer>
+                <Footer className={styles.footer}>
+                    <FooterPage/>
+                </Footer>
             </Layout>
         </>
     )
