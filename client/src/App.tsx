@@ -5,7 +5,6 @@ import { AuthProvider } from './feachers/auth/context/AuthContext'
 import './App.css'
 
 function App() {
-
   return (
     <>
       <AuthProvider>

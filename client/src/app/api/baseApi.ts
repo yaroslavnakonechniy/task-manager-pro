@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-console.log('--- ПЕРЕВІРКА ENV ---', import.meta.env.VITE_API_URL);
 const API_BASE_URL = import.meta.env.VITE_API_URL 
   ? `${import.meta.env.VITE_API_URL}/api/v1` 
   : '/api/v1';
