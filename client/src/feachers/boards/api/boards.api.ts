@@ -16,7 +16,11 @@ export const boardsApi = baseApi.injectEndpoints({
                 url: `/boards/${boardId}/tasks`,
                 responseHandler: (response) => response.text(),
             }),
-            transformResponse: () => [] as ITask[],
+            
+            transformResponse: (response: any) => {
+            // не обнуляємо, просто повертаємо пустий масив якщо немає стріму
+            return response?.data ?? [];
+            },
             
             async onCacheEntryAdded(boardId, { updateCachedData, cacheDataLoaded, cacheEntryRemoved }) {
                 try {
