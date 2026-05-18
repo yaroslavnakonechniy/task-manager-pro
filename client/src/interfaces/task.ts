@@ -4,7 +4,7 @@ export interface ITask {
     id: string,
     title: string,
     description: string,
-    workflow: Workflow,
+    workflow: "todo" | "progress" | "done",
     boardId: string,
     authorId: string
 }
