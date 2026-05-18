@@ -40,7 +40,7 @@ export const FormTask = ({ task, mode }: CreateTaskProps) => {
             form.setFieldsValue({
                 TaskTitle: task.title,
                 TaskDescription: task.description,
-                TaskWorkflow: task.workflow.code,
+                TaskWorkflow: (task.workflow as any).code,
                 TaskBoardId: task.boardId
             });
         } else if (mode === "create" && boardId) {

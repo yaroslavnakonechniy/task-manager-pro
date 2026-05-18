@@ -21,7 +21,7 @@ export const CardTask = ({card}: CardTaskProps) => {
     };
 
     const statuses = ['todo', 'progress', 'done'];
-    const currentIndex = statuses.indexOf(card.workflow.code);
+    const currentIndex = statuses.indexOf((card.workflow as any).code);
 
     const handleDelete = () => {
         if (card.id && card?.boardId) {
