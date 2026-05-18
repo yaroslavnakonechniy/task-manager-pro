@@ -32,7 +32,7 @@ export const TaskDetails = () => {
                 <Outlet/>
                 <Descriptions title="Task Info" style={{ padding: "40px" }}>
                     <Item label="TaskTitle">{data?.title}</Item>
-                    <Item label="TaskWorkflow">{data?.workflow.label}</Item>
+                    <Item label="TaskWorkflow">{(data?.workflow as any).label}</Item>
                     <Item label="TaskDescription">{data?.description}</Item>
                 </Descriptions>
                     <Space style={{ marginTop: 16 }}>
