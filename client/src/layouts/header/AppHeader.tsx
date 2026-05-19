@@ -14,7 +14,7 @@ export const AppHeader = () => {
     return(
         <>
             <Header className={styles.header}>
-                <div className="logo">
+                <div className={styles.logo}>
                     <Link to="/boards">Task Manager</Link>
                 </div>
                 <nav className={styles.header__navigation}>

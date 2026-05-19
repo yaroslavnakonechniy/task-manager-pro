@@ -58,7 +58,6 @@ export const boardsApi = baseApi.injectEndpoints({
                                 try {
                                     const task = JSON.parse(line);
                                     count++;
-                                    console.log(`📌 [STREAM TASKS] Отримано таску #${count}:`, task.title || task.id);
                                     
                                     updateCachedData((draft) => {
                                         const exists = draft.find(t => t.id === task.id);
@@ -83,7 +82,6 @@ export const boardsApi = baseApi.injectEndpoints({
                         }
                     }
                     
-                    console.log(`✅ [STREAM TASKS] Стрім завершено. Всього отримано: ${count}`);
                 } catch (err) {
                     console.error('⚠️ [STREAM TASKS] Помилка:', err);
                 }
@@ -96,17 +94,37 @@ export const boardsApi = baseApi.injectEndpoints({
             transformResponse: (response: ApiResponse<IBoard>) => response.data,
             providesTags: ['Boards'],
         }),
+
         createBoard: builder.mutation<IBoard, { name: string; description?: string }>({
             query: (body) => ({ url: '/boards', method: 'POST', body }),
             invalidatesTags: ['Boards'],
         }),
+
         updateBoard: builder.mutation<IBoard, { id: string; name: string; description?: string; }>({
             query: ({ id, ...body }) => ({ url: `/boards/${id}`, method: 'PUT', body }),
             invalidatesTags: ['Boards'],
         }),
+        
         deleteBoard: builder.mutation<void, string>({
-            query: (boardId) => ({ url: `/boards/${boardId}`, method: 'DELETE' }),
-            invalidatesTags: ['Boards'],
+            query: (boardId) => ({ 
+                url: `/boards/${boardId}`, 
+                method: 'DELETE' 
+            }),
+            invalidatesTags: ['Boards'], 
+            
+            async onQueryStarted(boardId, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    
+                    dispatch(
+                        boardsApi.util.updateQueryData('getTasksBoardById', boardId, () => {
+                            return []; 
+                        })
+                    );
+                } catch (error) {
+                    console.error("❌ Очищення тасок після видалення дошки зламалося:", error);
+                }
+            },
         }),
     }),
 });
