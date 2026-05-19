@@ -1,129 +1,86 @@
-Final project. Using API to create a task manager. 
+# Task Manager (Frontend)
 
-Technologies:
+A powerful, production-ready Task Management application built with React, TypeScript, and Ant Design. The project features a modular Feature-Sliced Design (FSD) inspired architecture, centralized Redux state management, and full responsive design.
 
-  React
-  TypeScript
-  Vite
-  Ant Design
-  Sass
+🚀 **Live Demo**: [https://tasks-manager-frontend-iv2e.onrender.com](https://tasks-manager-frontend-iv2e.onrender.com)
 
-Project Structure:
+---
 
+## 🛠️ Tech Stack
+
+- **Framework & Tooling**: React, TypeScript, Vite, Sass
+- **UI Components**: Ant Design (antd), `@ant-design/icons`
+- **State Management**: Redux Toolkit, React Redux
+- **Routing**: React Router DOM
+
+---
+
+## 📂 Project Structure
+
+The project follows a scalable, modular structure grouped by business features:
+
+```text
 src/
 │
-├── app/
-│   ├── api/
-│   │   └── baseApi
-│   └── store
-├── feachers/
-│   ├── auth/
-│   │   ├── api/
-│   │   │    └── auth.api
-│   │   ├── components/
-│   │   │    └── ProtectedRoute
-│   │   ├── contex/
-│   │   │    └── AuthContex
-│   │   └── pages/
-│   │   │    └── LoginPages
-│   ├── boards/
-│   │   ├── api/
-│   │   │    └── boards.api
-│   │   ├── components/
-│   │   │    ├── boardDetails/
-│   │   │    │    └── BoardDetails
-│   │   │    ├── cardBoard/
-│   │   │    │    └── CardBoard
-│   │   │    ├── form/
-│   │   │    │    ├── CreateBoard
-│   │   │    │    └── Form
-│   │   └── pages/
-│   │   │    ├── Boards
-│   │   │    ├── EditBoardPage
-│   │   │    └── ListBoard
-│   ├── comments/
-│   │   ├── api/
-│   │   │    └── comments.api
-│   │   ├── components/
-│   │   │    ├── cardComments/
-│   │   │    │    └── CardComments
-│   │   │    ├── commentsDetails/
-│   │   │    │    └── CommentDetails
-│   │   │    ├── form/
-│   │   │    │    ├── CreateComments
-│   │   │    │    └── Form
-│   │   └── pages/
-│   │   │    ├── Comments
-│   │   │    ├── EditCommentsPage
-│   │   │    └── ListComments
-│   ├── tasks/
-│   │   ├── api/
-│   │   │    └── tasks.api
-│   │   ├── components/
-│   │   │    ├── cardTask/
-│   │   │    │    └── CardTask
-│   │   │    ├── column/
-│   │   │    │    └── Column
-│   │   │    ├── form/
-│   │   │    │    └── Form
-│   │   │    ├── taskDetails/
-│   │   │    │    └── TaskDetails
-│   │   └── pages/
-│   │   │    ├── Tasks
-│   │   │    ├── EditTasksPage
-│   │   │    └── ListTasks
-├── hooks/
-│   ├── useCreateAction
-│   ├── useDeleteBoard
-│   ├── useDeleteComment
-│   └── useDeleteTask
-├── interfaces/
-│   ├── apiResponse
-│   ├── auth
-│   ├── board
-│   ├── comment
-|   └── task
-├── layouts/
-│   ├── footer/
-│   │   └── Footer
-│   ├── header/
-│   │   ├── AppHeader
-│   │   └── style.module
-│   └── layout/
-│   │   └── Layout
-├── router/
-|   └── router
-├── types/
-│   ├── cards/
-│   │   ├── boardProps
-│   │   └── taskProps
-│   ├── column.type
-│   ├── comment.type
-│   ├── createAction.type
-│   ├── formBoard.type
-│   ├── formTask.type
-|   └── worflow.type
-└── App.tsx
+├── app/                  # Application setup (API configurations, global Redux store)
+│   ├── api/              # Base RTK Query / Axios setup (baseApi)
+│   └── store             # Redux central store configuration
+│
+├── feachers/             # Independent business modules (features)
+│   ├── auth/             # User authentication, Protected Routes, Login pages
+│   ├── boards/           # Board management (CRUD, Details, Forms)
+│   ├── comments/         # Task comments features (CRUD)
+│   └── tasks/            # Tasks & Columns workflow logic (Kanban components)
+│
+├── hooks/                # Reusable global Custom React hooks
+├── interfaces/           # Global TypeScript interfaces for API models
+├── layouts/              # Core layout templates (Header, Footer, Main Layout)
+├── router/               # Application routing mapping
+├── types/                # Component prop types and local custom type definitions
+└── App.tsx               # Root component
+```
 
-Install project:
+---
 
-  clone project:
-    git@github.com:yaroslavnakonechniy/lesson-48.git
+## 🚀 Getting Started
 
-  Install dependencies:
+Follow these steps to set up and run the project locally.
 
-    npm install
-    npm install @ant-design/icons
-    npm install @reduxjs/toolkit
-    npm install antd
-    npm install react
-    npm install react-dom
-    npm install react-redux
-    npm install react-router-dom
-    npm install sass
+### 1. Clone the repository
 
-  Run dev server:
+```bash
+git clone git@github.com:yaroslavnakonechniy/lesson-48.git
+cd lesson-48
+```
 
-    npm run dev
-    npm run start:server
-    npm run start:db
+### 2. Install dependencies
+
+```bash
+npm install
+npm install @ant-design/icons @reduxjs/toolkit antd react react-dom react-redux react-router-dom sass
+```
+
+### 3. Run the application
+
+To fire up the development client along with the mock local database server, run the following commands in your terminal:
+
+```bash
+# Start Vite development server
+npm run dev
+
+# Start the API / Backend server
+npm run start:server
+
+# Start the mock DB instance
+npm run start:db
+```
+
+---
+
+## 💡 Key Features
+
+- 🔐 **Secure Auth**: Context-driven authentication status with `ProtectedRoute` wrappers.
+- 📋 **Interactive Boards**: Create, edit, and list distinct work boards.
+- ⚡ **Dynamic Tasks**: Column-based progression workflow tracking.
+- 💬 **Collaboration**: Threaded comments supported inside individual task details.
+- 🎨 **Sass Custom Styling**: Styled using dynamic modern Ant Design components combined with modular Sass variables.
