@@ -22,7 +22,7 @@ export const TaskDetails = () => {
 
     const handleDelete = () => {
         if (taskId && data?.boardId) {
-            performDelete(taskId, data.boardId);
+            performDelete({ id: taskId, boardId: data.boardId });
         }
     };
 
