@@ -4,20 +4,24 @@ import { AppHeader } from "../header/AppHeader";
 import { FooterPage } from "../footer/Footer";
 import styles from "./styles.module.scss";
 
-const { Footer, Content } = Layout;
+const { Footer, Content, Header } = Layout;
  
 export const LayoutPage = () => {
-    return(
-        <>
-            <Layout className={styles.layout}>
+    return (
+        <Layout className={styles.layout}>
+        
+            <Header>
                 <AppHeader />
-                <Content className={styles.content}>
-                    <Outlet/>
-                </Content>
-                <Footer className={styles.footer}>
-                    <FooterPage/>
-                </Footer>
-            </Layout>
-        </>
-    )
-}
+            </Header>
+
+            <Content className={styles.content}>
+                <Outlet />
+            </Content>
+
+            <Footer className={styles.footer}>
+                <FooterPage />
+            </Footer>
+
+        </Layout>
+    );
+};

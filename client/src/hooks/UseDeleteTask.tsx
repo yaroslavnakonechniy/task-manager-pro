@@ -6,11 +6,12 @@ export const useDeleteTask = () => {
     const navigate = useNavigate();
     const [deleteTask, { isLoading }] = useDeleteTaskMutation();
 
-    const performDelete = async (taskId: string, boardId?: string) => {
+    const performDelete = async ({ id, boardId }: { id: string; boardId: string }) => {
         try {
-            await deleteTask(taskId).unwrap();
+            await deleteTask({ id, boardId }).unwrap();
 
             message.success("Task deleted successfully");
+            
             navigate(`/boards/${boardId}/tasks`);
             
         } catch (error) {

@@ -1,9 +1,7 @@
-
 .header{
     display: flex;
     align-items: center;
     color: black;
-    background-color: #f8cf8d;
     justify-content: space-between;
 
     &__navigation{
@@ -11,4 +9,10 @@
         align-items: center;
         gap: 10px;
     }
+}
+
+.logo{
+    color: white;
+    font-weight: 800;
+    font-size: 28px;
 }

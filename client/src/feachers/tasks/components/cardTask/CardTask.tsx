@@ -5,12 +5,13 @@ import Paragraph from "antd/es/typography/Paragraph";
 import type { CardTaskProps } from "../../../../types/cards/taskProps";
 import { useDeleteTask } from "../../../../hooks/UseDeleteTask";
 import { useUpdateTaskWorkflowMutation } from "../../api/tasks.api"
+import type { Workflow } from "../../../../types/workflow.type";
 
 export const CardTask = ({card}: CardTaskProps) => {
     const { performDelete, isDeleting } = useDeleteTask();
     const [updateWorkflow, { isLoading: isUpdating }] = useUpdateTaskWorkflowMutation();
 
-    const handleMove = (newStatus: string) => {
+    const handleMove = (newStatus: Workflow['code']) => {
         if (card.id && card.boardId) {
             updateWorkflow({ 
                 id: card.id, 
@@ -20,12 +21,12 @@ export const CardTask = ({card}: CardTaskProps) => {
         }
     };
 
-    const statuses = ['todo', 'progress', 'done'];
-    const currentIndex = statuses.indexOf((card.workflow as any).code);
+    const statuses = ['todo', 'progress', 'done'] as const;
+    const currentIndex = statuses.indexOf(card.workflow);
 
     const handleDelete = () => {
         if (card.id && card?.boardId) {
-            performDelete(card.id, card.boardId);
+            performDelete({ id: card.id, boardId: card.boardId }); 
         }
     };
 
